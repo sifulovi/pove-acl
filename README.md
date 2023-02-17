@@ -1,6 +1,12 @@
-### A feature based ACL by spring security and jwt
+## A feature based ACL by spring security 6 and jwt
 
-PostgreSQL Database is used in this project.
+### Techs:
+- > java 17
+- > Spring boot 3
+- > Spring Security 6
+- > PostgreSQL  
+- > Docker latest
+
 PostgreSQL DB client is coming from docker images/container, need to run the docker compose file for run this project.
 
 Two user will be loaded while application startup , see the ***DataLoader.java***.
@@ -104,5 +110,12 @@ Here we see a user has two authorities.
         return httpSecurity.build();
     }
 ```
+
+@@ Yet to implement
+1. EMAIL service configuration
+2. OTP verification via email
+3. Events persist / Activity tracking
+4. Web client / react js / angular
+5. Socket.io
 
 @isiful.ovi@gmail.com 
