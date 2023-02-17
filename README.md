@@ -31,6 +31,8 @@ RESPONSE :
 GET localhost:8080/api/users/list
 AUTHORIZATION : `Bearer {token}`
 
+
+RESPONSE : 
 ```agsl
 User List
 ```
