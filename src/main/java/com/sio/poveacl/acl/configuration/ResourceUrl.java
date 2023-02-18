@@ -27,12 +27,4 @@ public class ResourceUrl {
                 USER_LIST_RECORD
         );
     }
-
-    public static List<AuthRecord> getStaffFeatureList() {
-        return List.of(
-                USER_LIST_RECORD
-        );
-    }
-
-
 }

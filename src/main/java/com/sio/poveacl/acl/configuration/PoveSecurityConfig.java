@@ -77,8 +77,7 @@ public class PoveSecurityConfig {
         httpSecurity.logout().logoutUrl("/logout");
 
         this.ignoredPrivileges(httpSecurity);
-        this.userPrivileges(httpSecurity);
-        this.staffPrivileges(httpSecurity);
+        this.userPrivileges(httpSecurity); //user authority
 
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authenticationProvider(authenticationProvider());
@@ -95,15 +94,8 @@ public class PoveSecurityConfig {
         return httpSecurity.build();
     }
 
-
     void userPrivileges(HttpSecurity httpSecurity) throws Exception {
         for (var authRecord : ResourceUrl.getUserFeatureList()) {
-            httpSecurity.authorizeHttpRequests(http -> http.requestMatchers(authRecord.url()).hasAuthority(authRecord.name()));
-        }
-    }
-
-    void staffPrivileges(HttpSecurity httpSecurity) throws Exception {
-        for (var authRecord : ResourceUrl.getStaffFeatureList()) {
             httpSecurity.authorizeHttpRequests(http -> http.requestMatchers(authRecord.url()).hasAuthority(authRecord.name()));
         }
     }
