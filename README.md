@@ -11,9 +11,13 @@ PostgreSQL DB client is coming from docker images/container, need to run the doc
 
 Two user will be loaded while application startup , see the ***DataLoader.java***.
 
+
+### Swagger URL 
+- > http://localhost:8080/swagger-ui/index.html#/
+
 #### For Authentication:
 
-POST localhost:8080/auth/token
+POST localhost:8080/api/auth/token
 
 ```agsl
 {
