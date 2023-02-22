@@ -98,8 +98,7 @@ Here we see a user has two authorities.
         httpSecurity.logout().logoutUrl("/logout");
 
         this.ignoredPrivileges(httpSecurity);
-        this.userPrivileges(httpSecurity); // here i added authorities list for user
-        this.staffPrivileges(httpSecurity); // here i added authorities list for staff
+        this.userPrivileges(httpSecurity); // User roles/authorities
 
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authenticationProvider(authenticationProvider());
