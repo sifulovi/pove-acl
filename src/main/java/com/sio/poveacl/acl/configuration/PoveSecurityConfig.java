@@ -46,12 +46,11 @@ public class PoveSecurityConfig {
     }
 
     private static final String[] IGNORED_URL = new String[]{
-            "/login", "/auth/**"
+            "/auth/**", "/public" ,"/v3/api-docs/**","/swagger-ui/**"
     };
 
     void ignoredPrivileges(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(http -> http.requestMatchers(IGNORED_URL).permitAll());
-
     }
 
     @Bean
