@@ -31,7 +31,6 @@ public class AuthUserDetailsService implements UserDetailsService {
     }
 
     String[] getAllFeatures(AppUser actor) {
-
         return actor.getRoles().stream()
                 .flatMap(designation -> designation.getFeatures().stream())
                 .map(Feature::getName)

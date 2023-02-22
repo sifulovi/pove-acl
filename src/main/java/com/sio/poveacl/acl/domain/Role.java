@@ -14,10 +14,7 @@ import java.util.Set;
 @ToString
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-
 public class Role extends Base {
-
-    private Long id;
 
     @Column
     private String title;

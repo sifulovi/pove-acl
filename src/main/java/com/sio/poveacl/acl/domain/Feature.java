@@ -16,20 +16,16 @@ import java.util.Set;
 @ToString
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-
 public class Feature extends Base {
-
 
     @Column(nullable = false, unique = true)
     private String name;
-
 
     @Column(nullable = false, unique = true)
     private String url;
 
     @Column
     private String title;
-
 
     @Column
     private String description;

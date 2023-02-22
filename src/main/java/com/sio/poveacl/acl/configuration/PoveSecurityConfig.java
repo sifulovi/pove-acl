@@ -19,7 +19,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
-
 public class PoveSecurityConfig {
 
     private final
@@ -32,19 +31,6 @@ public class PoveSecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-/*
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        List<UserDetails> userDetailsList = new ArrayList<>();
-        userDetailsList.add(User.withUsername("ovi").password(passwordEncoder().encode("1234"))
-                .roles("ADMIN", "STAFF").build());
-        userDetailsList.add(User.withUsername("staff").password(passwordEncoder().encode("1234"))
-                .roles("STAFF").build());
-
-        return new InMemoryUserDetailsManager(userDetailsList);
-    }
-*/
 
     @Bean
     AuthenticationProvider authenticationProvider() {
