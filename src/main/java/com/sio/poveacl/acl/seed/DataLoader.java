@@ -77,7 +77,6 @@ public class DataLoader implements CommandLineRunner {
         adminUser.getRoles().add(adminRole);
         userRepository.save(adminUser);
 
-
         staffRole.getFeatures().add(userListFeature);
         staffRole = roleRepository.save(staffRole);
         staffUser.getRoles().add(staffRole);
