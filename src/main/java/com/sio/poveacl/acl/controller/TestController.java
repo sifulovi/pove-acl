@@ -36,10 +36,8 @@ public class TestController {
         return "Create User";
     }
 
-
     @PostMapping("/auth/token")
     public ResponseEntity<?> authenticate(@RequestBody LoginRequest request) {
-
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
         if (authenticate.isAuthenticated()) {
             String token = jwtService.generateToken(request.username());
