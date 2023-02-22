@@ -46,7 +46,7 @@ public class PoveSecurityConfig {
     }
 
     private static final String[] IGNORED_URL = new String[]{
-            "/auth/**", "/public" ,"/v3/api-docs/**","/swagger-ui/**"
+            "/api/auth/token", "/public", "/v3/api-docs/**", "/swagger-ui/**"
     };
 
     void ignoredPrivileges(HttpSecurity httpSecurity) throws Exception {
@@ -57,8 +57,6 @@ public class PoveSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.csrf().disable();
-        httpSecurity.httpBasic();
-        httpSecurity.formLogin();
         httpSecurity.logout().logoutUrl("/logout");
 
         this.ignoredPrivileges(httpSecurity);
