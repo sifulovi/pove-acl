@@ -65,7 +65,7 @@ public class PoveSecurityConfig {
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authenticationProvider(authenticationProvider());
         httpSecurity.addFilterBefore(new JwtAuthorizationFilter(jwtService, authUserDetailsService), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.authorizeHttpRequests(http -> http.anyRequest().authenticated());
+        httpSecurity.authorizeHttpRequests(http -> http.anyRequest().permitAll());
 
         httpSecurity.exceptionHandling(
                 exception -> exception.accessDeniedHandler((request, response, accessDeniedException) -> {

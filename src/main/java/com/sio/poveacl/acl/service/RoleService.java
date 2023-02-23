@@ -1,6 +1,5 @@
 package com.sio.poveacl.acl.service;
 
-import com.sio.poveacl.acl.domain.Feature;
 import com.sio.poveacl.acl.domain.Role;
 import com.sio.poveacl.acl.dto.RoleDTO;
 import com.sio.poveacl.acl.dto.RoleEntityMapper;
@@ -13,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -35,14 +32,14 @@ public class RoleService {
     }
 
     public Long create(final RoleDTO roleDTO) {
-        Role role = new RoleEntityMapper(featureRepository).apply(roleDTO);
+        Role role = new RoleEntityMapper(featureRepository).convert(roleDTO, new Role());
         return roleRepository.save(role).getId();
     }
 
     public void update(final Long id, final RoleDTO roleDTO) {
         Role role = roleRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
-        mapToEntity(roleDTO, role);
+        role = new RoleEntityMapper(featureRepository).convert(roleDTO, role);
         roleRepository.save(role);
     }
 
@@ -62,20 +59,6 @@ public class RoleService {
             return "designation.actor.manyToMany.referenced" + role.getFeatures().iterator().next().getId();
         }
         return null;
-    }
-
-    private Role mapToEntity(final RoleDTO roleDTO, final Role role) {
-        role.setTitle(roleDTO.getTitle());
-        role.setName(roleDTO.getName());
-        role.setDescription(roleDTO.getDescription());
-        role.setStatus(roleDTO.getStatus());
-        final List<Feature> featuress = featureRepository.findAllById(
-                roleDTO.getFeatures() == null ? Collections.emptyList() : roleDTO.getFeatures());
-        if (featuress.size() != (roleDTO.getFeatures() == null ? 0 : roleDTO.getFeatures().size())) {
-            throw new NotFoundException("one of featuress not found");
-        }
-        role.setFeatures(new HashSet<>(featuress));
-        return role;
     }
 
 }

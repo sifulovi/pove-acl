@@ -10,17 +10,15 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Function;
 
 @Component
 @RequiredArgsConstructor
-public class RoleEntityMapper implements Function<RoleDTO, Role> {
+public class RoleEntityMapper implements EntityMapper<RoleDTO, Role> {
 
     private final FeatureRepository featureRepository;
 
     @Override
-    public Role apply(RoleDTO roleDTO) {
-        Role role = new Role();
+    public Role convert(RoleDTO roleDTO, Role role) {
         role.setTitle(roleDTO.getTitle());
         role.setName(roleDTO.getName());
         role.setDescription(roleDTO.getDescription());

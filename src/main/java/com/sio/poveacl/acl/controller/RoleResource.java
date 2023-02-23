@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/designations", produces = MediaType.APPLICATION_JSON_VALUE)
-public class DesignationResource {
+public class RoleResource {
 
     private final RoleService roleService;
 
