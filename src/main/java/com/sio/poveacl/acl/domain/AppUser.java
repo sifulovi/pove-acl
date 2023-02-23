@@ -29,6 +29,9 @@ public class AppUser extends Base {
     @Column
     private String fullName;
 
+    @Column
+    private boolean isAccessGiven = false;
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",

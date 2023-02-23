@@ -30,7 +30,7 @@ public class AuthController {
         if (authenticate.isAuthenticated()) {
             String token = jwtService.generateToken(request.username());
             AppUser authActor = userRepository.findUserByUsername(request.username()).orElseThrow(() -> new UsernameNotFoundException("User no found !"));
-            var response = new LoginResponse(authActor.getId().toString(), authActor.getUsername(), authActor.getFullName(), token);
+            var response = new LoginResponse(authActor.getId().toString(), authActor.getUsername(), authActor.getFullName(), authActor.isAccessGiven(), token);
             return ResponseEntity.ok(response);
         }
 
