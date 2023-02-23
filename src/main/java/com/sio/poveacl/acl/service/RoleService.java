@@ -1,9 +1,7 @@
 package com.sio.poveacl.acl.service;
 
 import com.sio.poveacl.acl.domain.Role;
-import com.sio.poveacl.acl.dto.RoleDTO;
-import com.sio.poveacl.acl.dto.RoleEntityMapper;
-import com.sio.poveacl.acl.dto.RoleModelMapper;
+import com.sio.poveacl.acl.dto.*;
 import com.sio.poveacl.acl.exception.NotFoundException;
 import com.sio.poveacl.acl.repository.FeatureRepository;
 import com.sio.poveacl.acl.repository.RoleRepository;
@@ -20,14 +18,14 @@ public class RoleService {
     private final RoleRepository roleRepository;
     private final FeatureRepository featureRepository;
 
-    public List<RoleDTO> findAll() {
+    public List<RoleVO> findAll() {
         final List<Role> designations = roleRepository.findAll(Sort.by("id"));
-        return designations.stream().map(new RoleModelMapper()).toList();
+        return designations.stream().map(new RoleVOMapper()).toList();
     }
 
-    public RoleDTO get(final Long id) {
+    public RoleVO get(final Long id) {
         return roleRepository.findById(id)
-                .map(new RoleModelMapper())
+                .map(new RoleVOMapper())
                 .orElseThrow(NotFoundException::new);
     }
 

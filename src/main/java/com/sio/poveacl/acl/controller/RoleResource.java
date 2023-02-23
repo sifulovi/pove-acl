@@ -1,6 +1,7 @@
 package com.sio.poveacl.acl.controller;
 
 import com.sio.poveacl.acl.dto.RoleDTO;
+import com.sio.poveacl.acl.dto.RoleVO;
 import com.sio.poveacl.acl.service.RoleService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
@@ -20,12 +21,12 @@ public class RoleResource {
     private final RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<List<RoleDTO>> getAllDesignations() {
+    public ResponseEntity<List<RoleVO>> getAllDesignations() {
         return ResponseEntity.ok(roleService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RoleDTO> getDesignation(@PathVariable(name = "id") final Long id) {
+    public ResponseEntity<RoleVO> getDesignation(@PathVariable(name = "id") final Long id) {
         return ResponseEntity.ok(roleService.get(id));
     }
 
