@@ -1,4 +1,4 @@
 package com.sio.poveacl.acl.dto;
 
-public record Scope(String name, String url) {
+public record Scope(Long id, String name, String url) {
 }

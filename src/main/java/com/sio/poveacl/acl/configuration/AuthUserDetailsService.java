@@ -43,7 +43,7 @@ public class AuthUserDetailsService implements UserDetailsService {
     public List<Scope> getAllScopes(AppUser actor) {
         return actor.getRoles().stream()
                 .flatMap(designation -> designation.getFeatures().stream())
-                .map(it -> new Scope(it.getName(), it.getUrl()))
+                .map(it -> new Scope(it.getId(), it.getName(), it.getUrl()))
                 .toList();
     }
 

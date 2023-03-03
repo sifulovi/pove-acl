@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @RequiredArgsConstructor
 @Configuration
@@ -57,10 +59,11 @@ public class PoveSecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.csrf().disable();
+        httpSecurity.cors().disable();
         httpSecurity.logout().logoutUrl("/logout");
 
         this.ignoredPrivileges(httpSecurity);
-        this.userPrivileges(httpSecurity); //user authority
+        //     this.userPrivileges(httpSecurity); //user authority
 
         httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authenticationProvider(authenticationProvider());
@@ -81,5 +84,18 @@ public class PoveSecurityConfig {
         for (var authRecord : ResourceUrl.getUserFeatureList()) {
             httpSecurity.authorizeHttpRequests(http -> http.requestMatchers(authRecord.url()).hasAuthority(authRecord.name()));
         }
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/api/**")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS");
+                ;
+            }
+        };
     }
 }
