@@ -6,9 +6,11 @@ import com.sio.poveacl.acl.exception.NotFoundException;
 import com.sio.poveacl.acl.repository.FeatureRepository;
 import com.sio.poveacl.acl.repository.RoleRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class RoleService {
                 .orElseThrow(NotFoundException::new);
     }
 
-    public Long create(final RoleDTO roleDTO) {
+    public Long create(@Valid final RoleDTO roleDTO) {
         Role role = new RoleEntityMapper(featureRepository).convert(roleDTO, new Role());
         return roleRepository.save(role).getId();
     }
