@@ -9,10 +9,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +27,12 @@ public class UserController {
     @Operation(summary = "Create User", description = "Token is required!", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> createUser(@RequestBody @Valid UserRequestDTO userRequestDTO) {
         return new ResponseEntity<>(userService.create(userRequestDTO), HttpStatus.CREATED);
+    }
+
+    @GetMapping(ResourceUrl.UPDATE_USER)
+    @Operation(summary = "Create User", description = "Token is required!", security = @SecurityRequirement(name = "bearerAuth"))
+    public ResponseEntity<?> updateUser(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
 }
