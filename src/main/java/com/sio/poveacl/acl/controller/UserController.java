@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping(ResourceUrl.UPDATE_USER)
-    @Operation(summary = "Create User", description = "Token is required!", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Get User", description = "Token is required!", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> updateUser(@PathVariable Long id) {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }

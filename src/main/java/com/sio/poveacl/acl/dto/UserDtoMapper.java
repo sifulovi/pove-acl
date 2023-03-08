@@ -13,6 +13,6 @@ public class UserDtoMapper implements EntityMapper<AppUser, UserDTO> {
                 .map(Role::getName)
                 .toArray(String[]::new);
 
-        return new UserDTO(user.getUsername(), user.getFullName(), scops);
+        return new UserDTO(user.getId(), user.getUsername(), user.getFullName(), scops);
     }
 }

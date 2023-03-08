@@ -6,5 +6,8 @@ public record AppUserVO(Long id,
                         String fullName,
                         String email,
                         String username,
-                        List<Long> roleIds) {
+                        List<RoleAppVO> roles) {
+    public record RoleAppVO(Long id, String name) {
+    }
 }
+

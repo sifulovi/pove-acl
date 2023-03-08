@@ -15,6 +15,6 @@ public class UserModelMapper implements Function<AppUser, UserDTO> {
                 .map(Feature::getName)
                 .toArray(String[]::new);
 
-        return new UserDTO(appUser.getUsername(), appUser.getFullName(), scopes);
+        return new UserDTO(appUser.getId(), appUser.getUsername(), appUser.getFullName(), scopes);
     }
 }
