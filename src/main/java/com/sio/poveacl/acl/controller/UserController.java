@@ -35,4 +35,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
+    @PutMapping(ResourceUrl.UPDATE_USER)
+    @Operation(summary = "Update User", description = "Token is required!", security = @SecurityRequirement(name = "bearerAuth"))
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody @Valid UserRequestDTO userRequestDTO) {
+        return new ResponseEntity<>(userService.update(userRequestDTO, id), HttpStatus.OK);
+    }
+
 }

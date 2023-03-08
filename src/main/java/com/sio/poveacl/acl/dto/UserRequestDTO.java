@@ -12,6 +12,7 @@ public record UserRequestDTO(
         @NotBlank(message = "required")
         String username,
         String password,
+        Boolean isAccessGiven,
         List<Long> roleIds
 ) {
 }

@@ -40,7 +40,7 @@ public class AuthController {
                     authActor.getUsername(),
                     authActor.getFullName(),
                     authActor.isAccessGiven(),
-                    authActor.isAccessGiven() ? getAllScopes(authActor) : List.of());
+                    getAllScopes(authActor) );
 
             return ResponseEntity.ok(response);
         }
